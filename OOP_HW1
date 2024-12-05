@@ -1,0 +1,83 @@
+"""
+Implement a class Car. Class fields should store the following:
+model, year of release, manufacturer, engine capacity, color, price.
+Implement class methods for data input and output, provide access to individual fields through class methods.
+
+"""
+
+class Car:
+    def __init__(self, model, year_of_release, manufacturer, engine_capacity, color, price, time_to_manufacture):
+        self.__model = model
+        self.__year_of_release = year_of_release
+        self.__manufacturer = manufacturer
+        self.__engine_capacity = engine_capacity
+        self.__color = color
+        self.__price = price
+        self.__time_to_manufacture = time_to_manufacture
+
+    # Přijmutí vstupů pro jednotlivé hodnoty aut
+
+    def set_model(self, model):
+        self.__model = model
+
+    def set_year_of_release(self, year_of_release):
+        self.__year_of_release = year_of_release
+
+    def set_manufacturer(self, manufacturer):
+        self.__manufacturer = manufacturer
+
+    def set_engine_capacity(self, engine_capacity):
+        self.__engine_capacity = engine_capacity
+
+    def set_color(self, color):
+        self.__color = color
+
+    def set_price(self, price):
+        self.__price = price
+
+    def set_time_to_manufacture(self, time_to_manufacture):
+        self.__time_to_manufacture = time_to_manufacture
+
+    # Funkce výstupů jednotlivých hodnot
+    def get_model(self):
+        return self.__model
+
+    def get_year_of_release(self):
+        return self.__year_of_release
+
+    def get_manufacturer(self):
+        return self.__manufacturer
+
+    def get_engine_capacity(self):
+        return self.__engine_capacity
+
+    def get_color(self):
+        return self.__color
+
+    def get_price(self):
+        return self.__price
+
+    def get_time_to_manufacture(self):
+        return self.__time_to_manufacture
+
+    # vrať celkový popis auta
+    def display_info(self):
+        return (f"Car Details:\n"
+                f"Model: {self.__model}\n"
+                f"Year of Release: {self.__year_of_release}\n"
+                f"Manufacturer: {self.__manufacturer}\n"
+                f"Engine Capacity: {self.__engine_capacity} L\n"
+                f"Color: {self.__color}\n"
+                f"Price: {self.__price} CZK\n"
+                f"Time to Manufacture: {self.__time_to_manufacture} Months")
+
+# Použití pro auta
+car = Car("Model S", 2023, "Tesla", 3.5, "Red", "999 999", 6)
+car2 = Car("B8 Alltrack", 2019, "Volkswagen", 2.0, "White", "899 999", 6)
+car3 = Car("Superb", 2023, "Skoda", 2.0, "Metalic blue", "1 259 999", 12)
+print(car.display_info())
+print()
+print(car2.display_info())
+print()
+print(car3.display_info())
+

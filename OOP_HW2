@@ -1,0 +1,113 @@
+"""
+Task 1
+Create a function to display the current time. The function takes no parameters.
+Decorate the function using another function without utilizing decorator syntax. Possible output:
+"""
+
+import time
+
+# Ohraničení
+def add_equal_sign(func):
+    def wrapper():
+        print("=" * 31)
+        print(f"={'=' * 3}{' ' * 9}{func()}{' ' * 9}{'=' * 3}")
+        print("=" * 31)
+    return wrapper
+
+#funkce získání času
+def display_current_time():
+    current_time = time.strftime("%H:%M")
+    return(current_time)
+
+# volání funkce pro zobrazení do wrapperu
+decorated_function = add_equal_sign(display_current_time)
+decorated_function()
+
+"""
+Task2
+Create a Ship class containing information about a ship.
+
+Use inheritance to implement a Frigate class (contains info about a frigate), a Destroyer class (contains info about a destroyer), a Cruiser class (contains info about a cruiser).
+
+Each class must have the required methods.
+"""
+
+
+class Ship:
+    def __init__(self, name, type_of_ship, tonnage, country):
+        self.name = name
+        self.type_of_ship = type_of_ship
+        self.tonnage = tonnage
+        self.country = country
+
+    def display_info(self):
+        return f"Jméno lodi: {self.name}\nTyp: {self.type_of_ship}\nVýtlak: {self.tonnage} tons\nDomovská zěmě: {self.country}"
+
+    def sail(self):
+        return f"Loď {self.name} se plaví oceánem."
+
+
+# Subclass: Frigate (inherits from Ship)
+class Fregata(Ship):
+    def __init__(self, name, country, tonnage, armament, speed):
+        super().__init__(name, "Fregata", tonnage, country)
+        self.armament = armament
+        self.speed = speed
+
+    def display_info(self):
+        base_info = super().display_info()
+        return f"{base_info}\nVýzbroj: {self.armament}\nRychlost: {self.speed} uzlů"
+
+    def fire_weapon(self):
+        return f"Fregata {self.name} pálí ze zbraní!"
+
+
+# Subclass: Destroyer (inherits from Ship)
+class Kriznik(Ship):
+    def __init__(self, name, country, tonnage, armament, missile_capacity):
+        super().__init__(name, "Křižník", tonnage, country)
+        self.armament = armament
+        self.missile_capacity = missile_capacity
+
+    def display_info(self):
+        base_info = super().display_info()
+        return f"{base_info}\nVýzbroj: {self.armament}\nPočet raket: {self.missile_capacity} Tomahawk"
+
+    def launch_missile(self):
+        return f"Křižník {self.name} odpaluje Tomahawky!"
+
+
+# Subclass: Cruiser (inherits from Ship)
+class Bitevni_lod(Ship):
+    def __init__(self, name, country, tonnage, gun_count, armor_type):
+        super().__init__(name, "Bitevní loď", tonnage, country)
+        self.gun_count = gun_count
+        self.armor_type = armor_type
+
+    def display_info(self):
+        base_info = super().display_info()
+        return f"{base_info}\nPočet děl: {self.gun_count}\nTyp obrnění: {self.armor_type}"
+
+    def engage_enemy(self):
+        return f"Bitevní loď {self.name} útočí na nepřítele!"
+
+
+# Example usage
+Fregata = Fregata("USS Normandy", "USA", 5000, "Protilodní střely, Torpéda", 35)
+Kriznik = Kriznik("Admirál Kuznetsov", "Rus", 9600, "Střely s plochou dráhou letu, Torpéda", 40)
+Bitevni_lod = Bitevni_lod("Admiral Yamato", "Jap", 60000, 12, "4 cm pancíř")
+
+# Displaying info
+print(Fregata.display_info())
+print(Fregata.sail())
+print(Fregata.fire_weapon())
+print()
+
+print(Kriznik.display_info())
+print(Kriznik.sail())
+print(Kriznik.launch_missile())
+print()
+
+print(Bitevni_lod.display_info())
+print(Bitevni_lod.sail())
+print(Bitevni_lod.engage_enemy())

@@ -81,3 +81,58 @@ print(car2.display_info())
 print()
 print(car3.display_info())
 
+
+"""
+Create a class to convert temperature from Celsius to Fahrenheit, and vice versa.
+The class must have two static methods: to convert from Celsius to Fahrenheit and from Fahrenheit to Celsius.
+The class should also count how many times the temperature was calculated and return this value using a static method.
+"""
+#převaděč teploty
+
+class TemperatureConverter:
+        __conversion_count = 0 # Počet převodů teplot
+
+        #statická metoda pro C to F
+        @staticmethod
+        def celsius_to_fahrenheit(celsius):
+            TemperatureConverter.__conversion_count += 1
+            return (celsius * 9/5) + 32
+
+        # #statická metoda pro F to C
+        @staticmethod
+        def fahrenheit_to_celsius(fahrenheit):
+            TemperatureConverter.__conversion_count += 1
+            return (fahrenheit - 32) * 5/9
+
+        # počet konverzí
+        @staticmethod
+        def get_conversion_count():
+            return TemperatureConverter.__conversion_count
+
+temp_in_fahrenheit = TemperatureConverter.celsius_to_fahrenheit
+temp_in_celsius = TemperatureConverter.fahrenheit_to_celsius
+
+while True:
+    print("\nZvolte:")
+    print("1. °C na °F")
+    print("2. °F na °C")
+    print("3. Exit")
+
+    choice = input("Zadejte volbu:\n [1]\n [2]\n [3]\n")
+
+    if choice == "1":
+        celsius = float(input("Zadej teplotu v °C: "))
+        fahrenheit = TemperatureConverter.celsius_to_fahrenheit(celsius)
+        print(f"{celsius}°C je {fahrenheit:.2f}°F")
+        print(f"Celkový počet provedených konverzí: {TemperatureConverter.get_conversion_count()}")
+    elif choice == "2":
+        fahrenheit = float(input("Zadej teplotu v °F: "))
+        celsius = TemperatureConverter.fahrenheit_to_celsius(fahrenheit)
+        print(f"{fahrenheit}°F je {celsius:.2f}°C")
+        print(f"Celkový počet provedených konverzí: {TemperatureConverter.get_conversion_count()}")
+    elif choice == "3":
+        print(f"\nCelkový počet provedených konverzí: {TemperatureConverter.get_conversion_count()}")
+        break
+
+    else:
+        print("Nesprávný vstup, zadej znovu.")
